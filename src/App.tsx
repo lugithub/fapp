@@ -7,6 +7,7 @@ import { o2 } from './a-ord';
 import { s } from './a-semigroup';
 import { m } from './a-monoid';
 import { f } from './a-functor';
+import { a } from './a-applicative';
 
 function App() {
   return (
@@ -36,6 +37,10 @@ function App() {
       <article>
         <h1>Functor</h1>
         <pre>{JSON.stringify(f(), null, 2)}</pre>
+      </article>
+      <article>
+        <h1>Applicative</h1>
+        <pre>{JSON.stringify(a(), null, 2)}</pre>
       </article>
     </article>
   );
