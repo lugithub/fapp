@@ -6,6 +6,7 @@ import { e } from './a-either';
 import { o2 } from './a-ord';
 import { s } from './a-semigroup';
 import { m } from './a-monoid';
+import { f } from './a-functor';
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
       <article>
         <h1>Monoid</h1>
         <pre>{JSON.stringify(m(), null, 2)}</pre>
+      </article>
+      <article>
+        <h1>Functor</h1>
+        <pre>{JSON.stringify(f(), null, 2)}</pre>
       </article>
     </article>
   );
