@@ -1,3 +1,4 @@
+import { constant } from 'fp-ts/function';
 import { ordNumber } from 'fp-ts/Ord';
 import { of, getMonoid } from 'fp-ts/Array';
 import {
@@ -23,9 +24,24 @@ import {
   right,
 } from 'fp-ts/Either';
 
+function getFirstSemigroup2<A>(): Semigroup<A> {
+  return {
+    concat(x: A, y: A) {
+      return x;
+    },
+  };
+}
+
 export function s() {
   // return semigroupSum.concat(1, 2);
-  //   return getFirstSemigroup<number>().concat(1, 2);
+
+  // function getFirstSemigroup<A = never>(): Semigroup<A>
+  // A = never forces type parameter such as
+  return getFirstSemigroup<number>().concat(1, 2);
+
+  // unknown is bad
+  // return getFirstSemigroup2().concat(1, 2);
+
   //   return getArraySemigroup<number>().concat(of(10), of(2));
   //   const semigroupMin = getMeetSemigroup(ordNumber);
   //   const semigroupMax = getJoinSemigroup(ordNumber);
@@ -47,9 +63,9 @@ export function s() {
   //     { from: { x: 10, y: 20 }, to: { x: 11, y: 22 } }
   //   );
 
-  const semigroupPredicate: Semigroup<(
-    p: Point
-  ) => boolean> = getFunctionSemigroup(semigroupAll)<Point>();
+  const semigroupPredicate: Semigroup<
+    (p: Point) => boolean
+  > = getFunctionSemigroup(semigroupAll)<Point>();
 
   const isPositiveX = compose(gt(0), pathOr(-Infinity, 'x'));
   const isPositiveY = compose(gt(0), pathOr(-Infinity, 'y'));
